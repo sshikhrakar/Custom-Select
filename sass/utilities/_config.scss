@@ -1,0 +1,37 @@
+//Text
+$base__font-size: 16px;
+$base__line: 24px;
+
+//Font Stacks
+
+//$font-url--google : abc;
+
+// $typefaces
+// Configuration of webfonts imports.
+// $typefaces - {map}
+// @family - {string}
+// @weight - {integer} or {keyword} i.e. 800, bold
+// @style - {keyword} i.e. normal, italic
+
+//$typefaces: (
+//  'FILENAME': (
+//    family: 'fontname',
+//    weight: 100,
+//    style: normal,
+//  ),
+//);
+
+$font-family-sans-fallback: 'Arial', sans-serif;
+$font-family-sans: 'Helvetica Neue', 'Helvetica', $font-family-sans-fallback;
+$font-family-serif: 'Georgia', 'Cambria', 'Times New Roman', 'Times', serif;
+$font-family-monospace: 'Inconsolata', 'Menlo', 'Consolas', 'Bitstream Vera Sans Mono', 'Courier', monospace;
+$font-family--primary : $font-family-sans;
+$font-family--secondary : $font-family-sans;
+
+//Path to Assets
+$path--rel: "../images";
+
+//Colors
+$white: #fff;
+$default-color: #d4d4d4;
+$primary-color: #5264AE;

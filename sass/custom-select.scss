@@ -1,0 +1,60 @@
+@import 'utilities/manifest';
+@import 'base/manifest';
+
+.custom-select-wrapper{
+	float: left;
+	display: inline-block;
+	cursor: pointer;
+	margin: 0 rem(5px) 0 0 ;
+	width: 300px;
+	border-bottom: 1px solid $default-color;
+	@include bg('down-arrow.png', $position: right center, $size: auto);
+	position: relative;
+	select{
+		width: 1px;
+		height: 1px;
+		position: absolute;
+		z-index:2;
+		cursor: pointer;
+		outline:none;
+		opacity: 0;
+		_noFocusLine: expression(this.hideFocus=true); 
+	    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	    filter: alpha(opacity=0);
+	    -khtml-opacity: 0;
+	    -moz-opacity: 0;
+	    &:focus{
+			outline: none;	
+		}
+	}
+	&:focus{
+		outline: none;	
+	}
+	.custom-select-holder{
+	    display: block;
+	    margin: 0 rem(35px) 0 rem(5px);
+	    white-space: nowrap;            
+	    overflow: hidden;
+	    cursor: pointer;
+	    position: relative;
+	    z-index: -1;
+	    line-height: rem(30px);
+	}
+	.custom-select-option{
+		display: none;
+		position: absolute;
+		z-index: 100;
+		padding: 0;
+		border: 1px solid $default-color;
+		border-top: none;
+		.custom-select-list{
+			background: white;
+			width: 298px;
+			padding: 10px;
+			&:hover,&.focused{
+				background: $primary-color;
+				color: $white;
+			}
+		}
+	}
+}

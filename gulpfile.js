@@ -18,7 +18,7 @@ var gulp = require('gulp'),
 
 // Start SASS
 gulp.task('sass', function () {
-	return sass('sass/style.scss', { sourcemap: true })
+	return sass('sass/custom-select.scss', { sourcemap: true })
     .pipe(maps.init())
     .pipe(postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
     .pipe(maps.write('./'))
@@ -104,7 +104,7 @@ gulp.task('default', function(callback) {
 gulp.task('build', function(callback) {
   runSequence(
     'clean:dist',
-    ['sass', 'images', 'fonts', 'html'],
+    ['sass', 'useref', 'images', 'fonts', 'html'],
     callback
   )
 });

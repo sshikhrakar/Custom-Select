@@ -197,18 +197,17 @@
 		    * @author Shirish Shikhrakar
 		 **/
 		makeCanvas : function(_this,options){
-			var wrapperHeight = _this.outerHeight(),
-				borderColor = options.borderColor,
-				wrapper = $('.custom-select-wrapper');
-			wrapper.css({
-				'height': 30 + 'px'
-			});
-			if(_this.hasClass('error')){
-				borderColor = "#A94442";
-				_this.parent('.custom-select-wrapper').css({'border-bottom':'2px solid' + ' ' + borderColor});
-			}else{
-				_this.parent('.custom-select-wrapper').css({'border-bottom':'1px solid' + ' ' + borderColor});
-			}
+			var wrapper = $('.custom-select-wrapper'),
+				wrapperHeight = wrapper.outerHeight(),
+				option = wrapper.find('ul');
+			wrapper.css({'height': wrapperHeight + 'px'});
+			option.css({'top': wrapperHeight + 'px'});
+			// if(_this.hasClass('error')){
+			// 	borderColor = "#A94442";
+			// 	_this.parent('.custom-select-wrapper').css({'border-bottom':'2px solid' + ' ' + borderColor});
+			// }else{
+			// 	_this.parent('.custom-select-wrapper').css({'border-bottom':'1px solid' + ' ' + borderColor});
+			// }
 		},
 		/**
 		    * Wrap the original select box with a span
@@ -253,8 +252,9 @@
 		 **/
 		init : function(className,options){
 			CustomSelect.wrapElement(className);
-			CustomSelect.makeCanvas(className,options);
+			
 			CustomSelect.viewOptions(className);
+			CustomSelect.makeCanvas(className,options);
 			CustomSelect.tabFocus(className);
 		}
 	};
