@@ -201,7 +201,7 @@
 				wrapperHeight = wrapper.outerHeight(),
 				option = wrapper.find('ul');
 			wrapper.css({'height': wrapperHeight + 'px'});
-			option.css({'top': wrapperHeight + 'px'});
+			option.css({'top': (wrapperHeight - 1) + 'px'});
 			// if(_this.hasClass('error')){
 			// 	borderColor = "#A94442";
 			// 	_this.parent('.custom-select-wrapper').css({'border-bottom':'2px solid' + ' ' + borderColor});

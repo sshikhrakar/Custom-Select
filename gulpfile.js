@@ -16,9 +16,20 @@ var gulp = require('gulp'),
     autoprefixer = require('autoprefixer'),
     watch = require('gulp-watch');
 
+var errorHandler = function(error) {
+    notify.onError({
+        title: 'Task failed [' + error.plugin + ']',
+        message: 'Something went wrong',
+        sound: true
+    })(error);
+    // Prevent gulp watch from stopping
+    this.emit('end');
+};
+
 // Start SASS
 gulp.task('sass', function () {
 	return sass('sass/custom-select.scss', { sourcemap: true })
+    .on('error', errorHandler)
     .pipe(maps.init())
     .pipe(postcss([ autoprefixer({ browsers: ['last 2 versions'] }) ]))
     .pipe(maps.write('./'))

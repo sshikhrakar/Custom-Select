@@ -1,13 +1,15 @@
 @import 'utilities/manifest';
 @import 'base/manifest';
-
+.demo-wrapper{
+	padding: rem(30px);
+}
 .custom-select-wrapper{
+	font-family: $font-family-sans;
 	cursor: pointer;
 	margin: 0 rem(5px) rem(5px) 0 ;
 	width: 100%;
 	display: block;
-	border-bottom: 1px solid $default-color;
-	@include bg('down-arrow.png', $position: right center, $size: auto);
+	border: 1px solid $default-color;
 	position: relative;
 	select{
 		width: 1px;
@@ -31,18 +33,21 @@
 	}
 	.custom-select-holder{
 	    display: block;
-	    margin: 0 rem(35px) 0 rem(5px);
+	    margin: 0 rem(5px);
 	    white-space: nowrap;            
 	    overflow: hidden;
 	    cursor: pointer;
 	    position: relative;
 	    z-index: -1;
 	    line-height: rem(30px);
+	    @include bg('down-arrow.svg', $position: right center, $size: rem(20px) rem(20px));
+	    padding: rem(10px);
 	}
 	.custom-select-option{
 		width: 100%;
 		display: none;
 		position: absolute;
+		left: 0;
 		z-index: 100;
 		padding: 0;
 		border: 1px solid $default-color;
@@ -60,8 +65,5 @@
 		float: left;
 		display: inline-block;
 		width: 300px;
-		.custom-select-option{
-			width: 298px;
-		}
 	}
 }
