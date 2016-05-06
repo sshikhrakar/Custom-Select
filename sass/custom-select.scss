@@ -2,11 +2,10 @@
 @import 'base/manifest';
 
 .custom-select-wrapper{
-	float: left;
-	display: inline-block;
 	cursor: pointer;
-	margin: 0 rem(5px) 0 0 ;
-	width: 300px;
+	margin: 0 rem(5px) rem(5px) 0 ;
+	width: 100%;
+	display: block;
 	border-bottom: 1px solid $default-color;
 	@include bg('down-arrow.png', $position: right center, $size: auto);
 	position: relative;
@@ -41,6 +40,7 @@
 	    line-height: rem(30px);
 	}
 	.custom-select-option{
+		width: 100%;
 		display: none;
 		position: absolute;
 		z-index: 100;
@@ -48,13 +48,20 @@
 		border: 1px solid $default-color;
 		border-top: none;
 		.custom-select-list{
-			background: white;
-			width: 298px;
+			background: $white;
 			padding: 10px;
 			&:hover,&.focused{
 				background: $primary-color;
 				color: $white;
 			}
+		}
+	}
+	@include mq(md){
+		float: left;
+		display: inline-block;
+		width: 300px;
+		.custom-select-option{
+			width: 298px;
 		}
 	}
 }

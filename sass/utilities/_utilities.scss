@@ -63,6 +63,28 @@
 	}
 }
 
+//Media queries
+@mixin mq($break){
+	@if $break == "sm" {
+		@media(min-width: 1px) and (max-width: $sm-device - 1px){
+			@content;
+		}
+	}
+	@else if $break == "md" {
+		@media(min-width: $sm-device){
+			@content;
+		}
+	}
+	@else if $break == "lg" {
+		@media(min-width: $lg-device){
+			@content;
+		}
+	}
+	@else {
+		@error "No value could be retrieved for '#{$break}'";
+	}
+}
+
 //Hover Mixin
 @mixin hover {
   &:hover,

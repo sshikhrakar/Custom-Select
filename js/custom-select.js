@@ -252,7 +252,6 @@
 		 **/
 		init : function(className,options){
 			CustomSelect.wrapElement(className);
-			
 			CustomSelect.viewOptions(className);
 			CustomSelect.makeCanvas(className,options);
 			CustomSelect.tabFocus(className);
