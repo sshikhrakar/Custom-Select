@@ -63,7 +63,7 @@
 		    * @param class name of the select input type [string]
 		    * @author Shirish Shikhrakar
 		**/
-		viewOptions : function(className){
+		viewOptions : function(className,options){
 			var wrapper = $(className).parent('.custom-select-wrapper');
 			wrapper.click(function(e){
 				e.stopPropagation();
@@ -79,7 +79,7 @@
 					$(document).click(function(){
 						customOption.slideUp('fast');
 					});
-					CustomSelect.showSelectedOption(_this);
+					CustomSelect.showSelectedOption(_this,options);
 				}
 			});
 		},
@@ -105,30 +105,29 @@
 		    * @param class name of the select input type [string]
 		    * @author Shirish Shikhrakar
 		 **/
-		showSelectedOption : function(wrapper){
+		showSelectedOption : function(wrapper,options){
 			var $list = $(wrapper).children('.custom-select-option').children('.custom-select-list'),
-				$holder = $(wrapper).children().next('.custom-select-holder');
+				$holder = $(wrapper).children().next('.custom-select-holder'),
+				showOnHolder = function($target){
+					var listStyle = $target.attr('style');
+					$holder.text($target.text());
+					if(options.showImageOnHolder){
+						wrapper.attr('style',listStyle);
+					}
+					CustomSelect.updateHtmlOption($target);
+				}
 			$list.each(function(){
 				if($(this).hasClass('focused')){
-					var listStyle = $(this).attr('style');
-					$holder.text($(this).text());
-						console.log($(this).next('option'))
-					if(wrapper.attr('data-url') === undefined){
-						$(wrapper).attr('style',listStyle);
-					}
-					CustomSelect.updateHtmlOption($(this));
+					var _this = $(this);
+					showOnHolder(_this);
 				}
 			});
 			$list.click(function(e){
 				e.stopImmediatePropagation();
-				var listStyle = $(this).attr('style');
 				$($list).removeClass('focused');
-				$holder.text($(this).text());
-				if(wrapper.attr('data-url')  === undefined){
-					$(wrapper).attr('style',listStyle);
-				}	
-				CustomSelect.updateHtmlOption($(this));
-				$(this).parent().slideUp('fast');
+				var _this = $(this);
+				showOnHolder(_this);
+				_this.parent().slideUp('fast');
 			});
 		},
 
@@ -138,7 +137,8 @@
 				'background-size' : '20px 20px',
 				'background-position' :'10px center',
 				'background-repeat': 'no-repeat',
-				'padding-left' : '40px'
+				'padding-left' : '40px',
+				'transition': 'none'
 			});
 		},
 		/**
@@ -147,8 +147,7 @@
 		    * @author Shirish Shikhrakar
 		 **/
 		generateOption : function(className,selectWrapper){
-			var runOnce = true,
-				$customUl = $('<ul></ul>').attr('class','custom-select-option'),
+			var $customUl = $('<ul></ul>').attr('class','custom-select-option'),
 				option = $(className).children('option');
 			$(option).each(function(i){
 				var $list = $('<li></li>').attr('class','custom-select-list'),
@@ -166,19 +165,13 @@
 		    * @param class name of the select input type [string]
 		    * @author Shirish Shikhrakar
 		 **/
-		initialSelected : function(className,list){
+		initialSelected : function(className,options){
 			var selectedOption = $(className).find(":selected"),
 				imageUrl = $(selectedOption).attr('data-url');
 			$(className).next('.custom-select-holder').text(selectedOption.text());
-			if(imageUrl){
+			if(imageUrl && options.showImageOnHolder){
 				CustomSelect.imageStyle($(className).parent(),imageUrl);
 			}
-			/*if(list){
-				var style = $(list).attr('style');
-				$(className).next('.custom-select-holder').attr('style', style);
-			}*/
-
-			// $(className).next('.custom-select-holder').attr('style',$($list).attr('style'));
 		},
 		/**
 		    * Design the wrapper according to the options
@@ -202,12 +195,12 @@
 		    * @param class name of the select input type [string]
 		    * @author Shirish Shikhrakar
 		 **/
-		wrapElement : function(className){
+		wrapElement : function(className,options){
 			$(className).each(function(){
 				var _this = $(this);
 				_this.wrap($('<span></span>').attr('class','custom-select-wrapper'));
 				_this.after("<span class='custom-select-holder'></span>");
-				CustomSelect.initialSelected(_this);
+				CustomSelect.initialSelected(_this,options);
 				var selectWrapper = _this.parent('.custom-select-wrapper');
 				CustomSelect.generateOption(_this,selectWrapper);
 			});
@@ -240,8 +233,8 @@
 		    * @author Shirish Shikhrakar
 		 **/
 		init : function(className,options){
-			CustomSelect.wrapElement(className);
-			CustomSelect.viewOptions(className);
+			CustomSelect.wrapElement(className,options);
+			CustomSelect.viewOptions(className,options);
 			CustomSelect.makeCanvas(className,options);
 			CustomSelect.tabFocus(className);
 		}
@@ -250,10 +243,10 @@
 	$.fn.CustomSelect = function(options){
 		var defaultOption = {
 				theme : "default",
+				showImageOnHolder : true,
 				borderColor : "#5264AE"
 			},
 			pluginOptions = $.extend(defaultOption,options);
-
 		CustomSelect.init(this,pluginOptions);
 	};
 }(jQuery));
