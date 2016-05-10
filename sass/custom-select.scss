@@ -31,9 +31,13 @@
 	&:focus{
 		outline: none;	
 	}
+	&:hover{
+		border: 1px solid $primary-color;
+		transition: all 0.6s ease-in-out;
+	}
 	.custom-select-holder{
 	    display: block;
-	    margin: 0 rem(5px);
+	    margin: 0 rem(5px) 0 0;
 	    white-space: nowrap;            
 	    overflow: hidden;
 	    cursor: pointer;

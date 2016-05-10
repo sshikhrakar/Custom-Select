@@ -35,9 +35,12 @@ ul {
       outline: none; }
   .custom-select-wrapper:focus {
     outline: none; }
+  .custom-select-wrapper:hover {
+    border: 1px solid #933EC5;
+    transition: all 0.6s ease-in-out; }
   .custom-select-wrapper .custom-select-holder {
     display: block;
-    margin: 0 0.3125rem;
+    margin: 0 0.3125rem 0 0;
     white-space: nowrap;
     overflow: hidden;
     cursor: pointer;
@@ -62,7 +65,7 @@ ul {
       background: #fff;
       padding: 10px; }
       .custom-select-wrapper .custom-select-option .custom-select-list:hover, .custom-select-wrapper .custom-select-option .custom-select-list.focused {
-        background: #5264AE;
+        background: #933EC5;
         color: #fff; }
   @media (min-width: 768px) {
     .custom-select-wrapper {

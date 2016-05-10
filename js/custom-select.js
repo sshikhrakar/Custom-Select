@@ -81,13 +81,6 @@
 					});
 					CustomSelect.showSelectedOption(_this);
 				}
-				
-			});
-			wrapper.find('.custom-select-holder').mousedown(function (){
-				$(this).css('outline','none');
-			});
-			wrapper.find('.custom-select-holder').mouseup(function (){
-				$(this).css('outline','');
 			});
 		},
 		/**
@@ -118,9 +111,8 @@
 			$list.each(function(){
 				if($(this).hasClass("focused")){
 					var listStyle = $(this).attr('style');
-					$holder.text($(this).text())
-							.css({"background" : "", "padding-left" : "0px"})
-							.attr('style',listStyle);
+					$holder.text($(this).text());
+					$(wrapper).attr('style',listStyle);
 					CustomSelect.updateHtmlOption($(this));
 				}
 			});
@@ -128,9 +120,8 @@
 				e.stopPropagation();
 				var listStyle = $(this).attr('style');
 				$($list).removeClass('focused');
-				$holder.text($(this).text())
-						.css({"background" : "", "padding-left" : "0px"})
-						.next('.custom-select-holder').attr('style',listStyle);
+				$holder.text($(this).text());
+				$(wrapper).attr('style',listStyle);	
 				CustomSelect.updateHtmlOption($(this));
 				$(this).parent().slideUp('fast');
 			});
@@ -173,10 +164,9 @@
 		initialSelected : function(className,list){
 			var selectedOption = $(className).find(":selected"),
 				imageUrl = $(selectedOption).attr('data-url');
-
 			$(className).next('.custom-select-holder').text(selectedOption.text());
 			if(imageUrl){
-				$(className).next('.custom-select-holder').css({
+				$(className).parent().css({
 					'background-image':'url(' + imageUrl + ')',
 					'background-size' : '20px 20px',
 					'background-position' :'10px center',
@@ -200,7 +190,6 @@
 			var wrapper = $('.custom-select-wrapper'),
 				wrapperHeight = wrapper.outerHeight(),
 				option = wrapper.find('ul');
-			wrapper.css({'height': wrapperHeight + 'px'});
 			option.css({'top': (wrapperHeight - 1) + 'px'});
 			// if(_this.hasClass('error')){
 			// 	borderColor = "#A94442";
@@ -226,23 +215,24 @@
 		},
 
 		tabFocus : function(className){
-			className.on('focusout',function(e){
-				var _this = $(this);
+			var keyUp = function($element,focusStyle){
+				var _this = $element,
+					tab = 9;
 			    $(window).keyup(function (e) {									
 			        var code = (e.keyCode ? e.keyCode : e.which);
-			        if (code === 9) {
-			        	_this.parent().css({'border':'none','border-bottom':'1px solid #5264AE'});
+			        if (code === tab) {
+			        	console.log('here')
+			        	_this.parent().css(focusStyle);
 			        }
 			    });
+			};
+			className.on('focusout',function(e){
+				var focusOutStyle = {'outline':'none',height:''};
+				keyUp($(this),focusOutStyle);
 			});
 			className.on('focus', function(e){
-				var _this = $(this);
-			    $(window).keyup(function (e) {
-			        var code = (e.keyCode ? e.keyCode : e.which);
-			        if (code === 9) {
-			        	_this.parent().css({'border':'1px dotted #d4d4d4','border-bottom':'1px solid #5264AE'});
-			        }
-			    });
+				var focusInStyle = {'outline':'1px solid #5264AE'};
+				keyUp($(this),focusInStyle);
 			});
 		},
 		/**
