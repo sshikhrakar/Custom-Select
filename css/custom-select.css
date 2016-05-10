@@ -9,6 +9,10 @@ ul {
 
 .demo-wrapper {
   padding: 1.875rem; }
+  .demo-wrapper:after {
+    clear: both;
+    content: "";
+    display: block; }
 
 .custom-select-wrapper {
   font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", sans-serif;

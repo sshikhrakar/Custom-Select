@@ -7,7 +7,7 @@
 		    * @param current selected div
 		    * @author madandhungana <madandhungana@lftechnology.com>
 		**/
-		filterOptionInList : function(selectWrapper){
+		filterOptionInList : function(selectWrapper,options){
 			var previousKeyCode = 15, // random keycode
 				nextElementIndex = 0,
 				enterKey = 13;
@@ -15,7 +15,7 @@
 				var selectWrapperChildList = $(this).find(".custom-select-list");
 				if(event.which === enterKey){
 					$(selectWrapperChildList).removeClass('focused');
-					$('.custom-select-option').slideUp();
+					$('.custom-select-option').slideUp(options.animation);
 				}
 				else if((event.which > 64 && event.which < 91) || (event.which > 47 && event.which < 58) || (event.which > 95 && event.which < 106)) {
 					var listStartingWithKeyChar = [],
@@ -33,7 +33,7 @@
 						var currentUl = $(this).find(".custom-select-option");
 						if (previousKeyCode === event.which) {
 							$(listStartingWithKeyChar).eq(nextElementIndex).addClass('focused');
-							CustomSelect.showSelectedOption(selectWrapper);
+							CustomSelect.showSelectedOption(selectWrapper,options);
 							if (nextElementIndex < listStartingWithKeyChar.length - 1) {
 								nextElementIndex++;
 							} else {
@@ -41,7 +41,7 @@
 							}
 						} else {
 							$(listStartingWithKeyChar).eq(0).addClass("focused");
-							CustomSelect.showSelectedOption(selectWrapper);
+							CustomSelect.showSelectedOption(selectWrapper,options);
 							nextElementIndex = 0;
 							if(listStartingWithKeyChar.length === 1){
 								nextElementIndex = 0;
@@ -71,13 +71,13 @@
 					customOption = _this.children('.custom-select-option'),
 					hasDisabledAttribute = _this.children('select').attr('disabled');
 				if(typeof hasDisabledAttribute === typeof undefined) {
-					$('.custom-select-option').slideUp('fast');
 					_this.attr("tabindex", '1');
 					_this.focus();
-					customOption.toggle();
-					CustomSelect.filterOptionInList(_this);
+					console.log('here')
+					customOption.slideToggle(options.animation);
+					CustomSelect.filterOptionInList(_this,options);
 					$(document).click(function(){
-						customOption.slideUp('fast');
+						customOption.slideUp(options.animation);
 					});
 					CustomSelect.showSelectedOption(_this,options);
 				}
@@ -111,11 +111,12 @@
 				showOnHolder = function($target){
 					var listStyle = $target.attr('style');
 					$holder.text($target.text());
+					console.log(options.showImageOnHolder)
 					if(options.showImageOnHolder){
 						wrapper.attr('style',listStyle);
 					}
 					CustomSelect.updateHtmlOption($target);
-				}
+				};
 			$list.each(function(){
 				if($(this).hasClass('focused')){
 					var _this = $(this);
@@ -127,7 +128,7 @@
 				$($list).removeClass('focused');
 				var _this = $(this);
 				showOnHolder(_this);
-				_this.parent().slideUp('fast');
+				_this.parent().slideUp(options.animation);
 			});
 		},
 
@@ -166,7 +167,7 @@
 		    * @author Shirish Shikhrakar
 		 **/
 		initialSelected : function(className,options){
-			var selectedOption = $(className).find(":selected"),
+			var selectedOption = $(className).find(':selected'),
 				imageUrl = $(selectedOption).attr('data-url');
 			$(className).next('.custom-select-holder').text(selectedOption.text());
 			if(imageUrl && options.showImageOnHolder){
@@ -213,7 +214,6 @@
 			    $(window).keyup(function (e) {									
 			        var code = (e.keyCode ? e.keyCode : e.which);
 			        if (code === tab) {
-			        	console.log('here')
 			        	_this.parent().css(focusStyle);
 			        }
 			    });
@@ -244,6 +244,7 @@
 		var defaultOption = {
 				theme : "default",
 				showImageOnHolder : true,
+				animation: 'fast',
 				borderColor : "#5264AE"
 			},
 			pluginOptions = $.extend(defaultOption,options);
