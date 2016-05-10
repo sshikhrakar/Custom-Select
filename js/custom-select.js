@@ -109,21 +109,36 @@
 			var $list = $(wrapper).children('.custom-select-option').children('.custom-select-list'),
 				$holder = $(wrapper).children().next('.custom-select-holder');
 			$list.each(function(){
-				if($(this).hasClass("focused")){
+				if($(this).hasClass('focused')){
 					var listStyle = $(this).attr('style');
 					$holder.text($(this).text());
-					$(wrapper).attr('style',listStyle);
+						console.log($(this).next('option'))
+					if(wrapper.attr('data-url') === undefined){
+						$(wrapper).attr('style',listStyle);
+					}
 					CustomSelect.updateHtmlOption($(this));
 				}
 			});
 			$list.click(function(e){
-				e.stopPropagation();
+				e.stopImmediatePropagation();
 				var listStyle = $(this).attr('style');
 				$($list).removeClass('focused');
 				$holder.text($(this).text());
-				$(wrapper).attr('style',listStyle);	
+				if(wrapper.attr('data-url')  === undefined){
+					$(wrapper).attr('style',listStyle);
+				}	
 				CustomSelect.updateHtmlOption($(this));
 				$(this).parent().slideUp('fast');
+			});
+		},
+
+		imageStyle : function($target,imgUrl){
+			$target.css({
+				'background-image':'url(' + imgUrl + ')',
+				'background-size' : '20px 20px',
+				'background-position' :'10px center',
+				'background-repeat': 'no-repeat',
+				'padding-left' : '40px'
 			});
 		},
 		/**
@@ -140,17 +155,7 @@
 					imageUrl = $(option[i]).attr('data-url');
 				$list.append($(option[i]).text());
 				if(imageUrl){
-					$list.css({
-						'background-image':'url(' + imageUrl + ')',
-						'background-size' : '20px 20px',
-						'background-position' :'10px center',
-						'background-repeat': 'no-repeat',
-						'padding-left' : '40px'
-					});
-					/*if(runOnce === true){
-						CustomSelect.initialSelected(className,$list);
-						runOnce = false;
-					}*/
+					CustomSelect.imageStyle($list,imageUrl);
 				}
 				$($customUl).append($list);
 			});
@@ -166,13 +171,7 @@
 				imageUrl = $(selectedOption).attr('data-url');
 			$(className).next('.custom-select-holder').text(selectedOption.text());
 			if(imageUrl){
-				$(className).parent().css({
-					'background-image':'url(' + imageUrl + ')',
-					'background-size' : '20px 20px',
-					'background-position' :'10px center',
-					'background-repeat': 'no-repeat',
-					'padding-left' : '40px'
-				});
+				CustomSelect.imageStyle($(className).parent(),imageUrl);
 			}
 			/*if(list){
 				var style = $(list).attr('style');
