@@ -68,12 +68,13 @@
 			wrapper.click(function(e){
 				e.stopPropagation();
 				var _this = $(this),
+					allOption = wrapper.children('.custom-select-option'),
 					customOption = _this.children('.custom-select-option'),
 					hasDisabledAttribute = _this.children('select').attr('disabled');
 				if(typeof hasDisabledAttribute === typeof undefined) {
+					$(allOption).not(_this.children('.custom-select-option')).slideUp(options.animation)
 					_this.attr("tabindex", '1');
 					_this.focus();
-					console.log('here')
 					customOption.slideToggle(options.animation);
 					CustomSelect.filterOptionInList(_this,options);
 					$(document).click(function(){
@@ -111,7 +112,6 @@
 				showOnHolder = function($target){
 					var listStyle = $target.attr('style');
 					$holder.text($target.text());
-					console.log(options.showImageOnHolder)
 					if(options.showImageOnHolder){
 						wrapper.attr('style',listStyle);
 					}
