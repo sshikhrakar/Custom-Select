@@ -174,6 +174,7 @@
 				CustomSelect.imageStyle($(className).parent(),imageUrl);
 			}
 		},
+		
 		/**
 		    * Design the wrapper according to the options
 		    * @param class name of the select input type [string], options for plugin [hash map]
@@ -183,7 +184,12 @@
 			var wrapper = $('.custom-select-wrapper'),
 				wrapperHeight = wrapper.outerHeight(),
 				option = wrapper.find('ul');
-			option.css({'top': (wrapperHeight - 1) + 'px'});
+			this.calcTop = function(){
+				option.css({'top': (wrapperHeight - 1) + 'px'});
+			}
+			this.init = function(){
+				this.calcTop();
+			}
 			// if(_this.hasClass('error')){
 			// 	borderColor = "#A94442";
 			// 	_this.parent('.custom-select-wrapper').css({'border-bottom':'2px solid' + ' ' + borderColor});
@@ -227,6 +233,13 @@
 				keyUp($(this),focusInStyle);
 			});
 		},
+		windowResize : function(className, options){
+			$(window).resize(function(event) {
+				var makeCanvas = new CustomSelect.makeCanvas(className,options);
+				makeCanvas.calcTop();
+			});
+		},
+		
 		/**
 		    * Initialize all methods
 		    * @param class name of the select input type [string]
@@ -235,7 +248,9 @@
 		init : function(className,options){
 			CustomSelect.wrapElement(className,options);
 			CustomSelect.viewOptions(className,options);
-			CustomSelect.makeCanvas(className,options);
+			var canvas = new CustomSelect.makeCanvas(className,options);
+			canvas.init();
+			CustomSelect.windowResize(className,options);
 			CustomSelect.tabFocus(className);
 		}
 	};
