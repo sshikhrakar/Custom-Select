@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Custom Select</title>
-	<link rel="stylesheet" href="css/custom-select.min.css">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Custom Select Demo</title>
+	<!--build:css css/custom-select.min.css-->
+	<link rel="stylesheet" href="css/custom-select.css">
+	<!--endbuild-->
 </head>
 <body>
-	<div class="all-wrapper">
+	<div class="demo-wrapper">
 		<select class="custom-select" name="browser">
 			<option>Internet Explorer</option>
 			<option>Chrome</option>
@@ -14,16 +18,32 @@
 			<option>Safari</option>
 			<option>Opera</option>
 		</select>
-		<select class="custom-select" name="browser">
+		<select class="custom-select" name="hardware">
 			<option>Personal Computer</option>
 			<option>Laptop</option>
 			<option>Tablet PC</option>
 			<option>Android Phone</option>
 			<option>Apple Phone</option>
 		</select>
+		<select class="custom-select" name="browser-image">
+			<option data-url="images/internet-explorer.svg">Internet Explorer</option>
+			<option data-url="images/chrome-logo.svg">Chrome</option>
+			<option data-url="images/firefox-logo.svg">Firefox</option>
+			<option data-url="images/safari.svg">Safari</option>
+			<option data-url="images/opera-browser-logo.svg">Opera</option>
+		</select>
+		<select class="custom-select" name="browser-image">
+			<option data-url="images/internet-explorer.svg">Internet Explorer</option>
+			<option data-url="images/chrome-logo.svg">Chrome</option>
+			<option data-url="images/firefox-logo.svg">Firefox</option>
+			<option data-url="images/safari.svg">Safari</option>
+			<option data-url="images/opera-browser-logo.svg">Opera</option>
+		</select>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="js/custom-select.min.js"></script>
+	<!--build:js js/custom-select.min.js-->
+	<script src="js/custom-select.js"></script>
+	<!--endbuild-->
 	<script>
 		var options = {
 			// borderColor: "red"
