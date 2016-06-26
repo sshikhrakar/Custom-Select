@@ -63,7 +63,7 @@
 		    * @param class name of the select input type [string]
 		    * @author Shirish Shikhrakar
 		**/
-		viewOptions : function(className,options){
+		toggleOptions : function(className,options){
 			var wrapper = $(className).parent('.custom-select-wrapper');
 			wrapper.click(function(e){
 				e.stopPropagation();
@@ -113,7 +113,7 @@
 					var listStyle = $target.attr('style');
 					$holder.text($target.text());
 					if(options.showImageOnHolder){
-						wrapper.attr('style',listStyle);
+						$holder.attr('style',listStyle);
 					}
 					CustomSelect.updateHtmlOption($target);
 				};
@@ -133,14 +133,8 @@
 		},
 
 		imageStyle : function($target,imgUrl){
-			$target.css({
-				'background-image':'url(' + imgUrl + ')',
-				'background-size' : '20px 20px',
-				'background-position' :'10px center',
-				'background-repeat': 'no-repeat',
-				'padding-left' : '40px',
-				'transition': 'none'
-			});
+			$target.css({'background-image':'url(' + imgUrl + ')'});
+			$target.addClass('image-on-option');
 		},
 		/**
 		    * Create a list as options for custom select
@@ -168,10 +162,11 @@
 		 **/
 		initialSelected : function(className,options){
 			var selectedOption = $(className).find(':selected'),
-				imageUrl = $(selectedOption).attr('data-url');
-			$(className).next('.custom-select-holder').text(selectedOption.text());
+				imageUrl = $(selectedOption).attr('data-url'),
+				holder = $(className).next('.custom-select-holder');
+			holder.text(selectedOption.text());
 			if(imageUrl && options.showImageOnHolder){
-				CustomSelect.imageStyle($(className).parent(),imageUrl);
+				CustomSelect.imageStyle(holder,imageUrl);
 			}
 		},
 		
@@ -181,6 +176,7 @@
 		    * @author Shirish Shikhrakar
 		 **/
 		makeCanvas : function(_this,options){
+			//here make global variable
 			var wrapper = $('.custom-select-wrapper'),
 				wrapperHeight = wrapper.outerHeight(),
 				option = wrapper.find('ul');
@@ -225,6 +221,7 @@
 			    });
 			};
 			className.on('focusout',function(e){
+				//here make a css class
 				var focusOutStyle = {'outline':'none',height:''};
 				keyUp($(this),focusOutStyle);
 			});
@@ -247,7 +244,7 @@
 		 **/
 		init : function(className,options){
 			CustomSelect.wrapElement(className,options);
-			CustomSelect.viewOptions(className,options);
+			CustomSelect.toggleOptions(className,options);
 			var canvas = new CustomSelect.makeCanvas(className,options);
 			canvas.init();
 			CustomSelect.windowResize(className,options);
