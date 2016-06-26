@@ -1,4 +1,3 @@
-@import url("http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900");
 * {
   margin: 0;
   padding: 0;
@@ -21,7 +20,8 @@ ul {
   width: 100%;
   display: block;
   border: 1px solid #d4d4d4;
-  position: relative; }
+  position: relative;
+  background: #fff; }
   .custom-select-wrapper select {
     width: 1px;
     height: 1px;
@@ -49,13 +49,13 @@ ul {
     overflow: hidden;
     cursor: pointer;
     position: relative;
-    z-index: -1;
     line-height: 1.875rem;
+    padding: 0.625rem;
+    color: #000;
     background-image: url("../images/down-arrow.svg");
     background-repeat: no-repeat;
     background-position: right center;
-    background-size: 1.25rem 1.25rem;
-    padding: 0.625rem; }
+    background-size: 1.25rem 1.25rem; }
   .custom-select-wrapper .custom-select-option {
     width: 100%;
     display: none;
@@ -64,10 +64,11 @@ ul {
     z-index: 100;
     padding: 0;
     border: 1px solid #d4d4d4;
-    border-top: none; }
+    border-top: none;
+    color: #000; }
     .custom-select-wrapper .custom-select-option .custom-select-list {
       background: #fff;
-      padding: 10px; }
+      padding: 0.625rem; }
       .custom-select-wrapper .custom-select-option .custom-select-list:hover, .custom-select-wrapper .custom-select-option .custom-select-list.focused {
         background: #933EC5;
         color: #fff; }

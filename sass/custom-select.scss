@@ -14,8 +14,9 @@
 	margin: 0 rem(5px) rem(5px) 0 ;
 	width: 100%;
 	display: block;
-	border: 1px solid $default-color;
+	border: $border-width solid $border-color;
 	position: relative;
+	background: $select-bg;
 	select{
 		width: 1px;
 		height: 1px;
@@ -37,8 +38,8 @@
 		outline: none;	
 	}
 	&:hover{
-		border: 1px solid $primary-color;
-		transition: all 0.6s ease-in-out;
+		border: $border-width solid $primary-color;
+		transition: $hover-transition;
 	}
 	.custom-select-holder{
 	    display: block;
@@ -47,10 +48,10 @@
 	    overflow: hidden;
 	    cursor: pointer;
 	    position: relative;
-	    z-index: -1;
-	    line-height: rem(30px);
-	    @include bg('down-arrow.svg', $position: right center, $size: rem(20px) rem(20px));
-	    padding: rem(10px);
+	    line-height: $text-line-height;
+	    padding: $select-padding;
+	    color: $select-text-color;
+	    @include bg('down-arrow.svg', $position: right center, $size: rem(20px) rem(20px)); 
 	}
 	.custom-select-option{
 		width: 100%;
@@ -59,20 +60,21 @@
 		left: 0;
 		z-index: 100;
 		padding: 0;
-		border: 1px solid $default-color;
+		border: $border-width solid $border-color;
 		border-top: none;
+		color: $option-text-color;
 		.custom-select-list{
-			background: $white;
-			padding: 10px;
+			background: $option-bg;
+			padding: $option-padding;
 			&:hover,&.focused{
 				background: $primary-color;
-				color: $white;
+				color: $hover-text-color;
 			}
 		}
 	}
 	@include mq(md){
 		float: left;
 		display: inline-block;
-		width: 300px;
+		width: $md-width;
 	}
 }
