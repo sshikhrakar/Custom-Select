@@ -1,0 +1,42 @@
+//Text
+$base__font-size: 16px !default;
+$base__line: 24px !default;
+
+//Font Stacks
+
+$font-url--google : 'http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900';
+
+$font-family-sans-fallback: 'Arial', sans-serif;
+$font-family-sans: 'Lato','Helvetica Neue', 'Helvetica', $font-family-sans-fallback;
+$font-family--primary : $font-family-sans !default;
+$font-family--secondary : $font-family-sans !default;
+
+//Path to Assets
+$path--rel: "../images";
+
+//Colors
+$white: #fff;
+$black: #000;
+$grape-purple: #933EC5; 
+$default-gray: #d4d4d4;
+$primary-color: $grape-purple !default;
+$border-color: $default-gray !default;
+$select-bg: $white !default;
+$select-text-color: $black !default;
+$option-bg: $white !default;
+$option-text-color: $black !default;
+$hover-text-color: $white !default;
+
+//Breakpoints
+$sm-device: 768px !default;
+$md-device: 992px !default;
+$lg-device: 1200px !default;
+
+//Dimensions
+$default-padding: rem(10px);
+$md-width: 300px !default;
+$border-width: 1px !default;
+$select-padding: $default-padding !default;
+$option-padding: $default-padding !default;
+$text-line-height: rem(30px) !default;
+$hover-transition: all 0.6s ease-in-out;

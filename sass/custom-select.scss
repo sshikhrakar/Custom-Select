@@ -1,0 +1,80 @@
+@import 'utilities/manifest';
+@import 'base/manifest';
+.demo-wrapper{
+	padding: rem(30px);
+	&:after{
+		clear:both;
+		content:"";
+		display:block;
+	}
+}
+.custom-select-wrapper{
+	font-family: $font-family-sans;
+	cursor: pointer;
+	margin: 0 rem(5px) rem(5px) 0 ;
+	width: 100%;
+	display: block;
+	border: $border-width solid $border-color;
+	position: relative;
+	background: $select-bg;
+	select{
+		width: 1px;
+		height: 1px;
+		position: absolute;
+		z-index:2;
+		cursor: pointer;
+		outline:none;
+		opacity: 0;
+		_noFocusLine: expression(this.hideFocus=true); 
+	    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	    filter: alpha(opacity=0);
+	    -khtml-opacity: 0;
+	    -moz-opacity: 0;
+	    &:focus{
+			outline: none;	
+		}
+	}
+	&:focus{
+		outline: none;	
+	}
+	&:hover{
+		border: $border-width solid $primary-color;
+		transition: $hover-transition;
+	}
+	.custom-select-holder{
+	    display: block;
+	    margin: 0 rem(5px) 0 0;
+	    white-space: nowrap;            
+	    overflow: hidden;
+	    cursor: pointer;
+	    position: relative;
+	    line-height: $text-line-height;
+	    padding: $select-padding;
+	    color: $select-text-color;
+	    @include bg('down-arrow.svg', $position: right center, $size: rem(20px) rem(20px)); 
+	}
+	.custom-select-option{
+		width: 100%;
+		display: none;
+		position: absolute;
+		left: 0;
+		z-index: 100;
+		padding: 0;
+		border: $border-width solid $border-color;
+		border-top: none;
+		color: $option-text-color;
+		.custom-select-list{
+			background: $option-bg;
+			padding: $option-padding;
+			&:hover,&.focused{
+				background: $primary-color;
+				color: $hover-text-color;
+			}
+		}
+	}
+	@include mq(md){
+		float: left;
+		display: inline-block;
+		width: $md-width;
+	}
+}

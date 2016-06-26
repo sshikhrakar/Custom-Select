@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+ul {
+  list-style: none; }
+
+.demo-wrapper {
+  padding: 1.875rem; }
+  .demo-wrapper:after {
+    clear: both;
+    content: "";
+    display: block; }
+
+.custom-select-wrapper {
+  font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  cursor: pointer;
+  margin: 0 0.3125rem 0.3125rem 0;
+  width: 100%;
+  display: block;
+  border: 1px solid #d4d4d4;
+  position: relative;
+  background: #fff; }
+  .custom-select-wrapper select {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+    outline: none;
+    opacity: 0;
+    _noFocusLine: expression(this.hideFocus=true);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    -khtml-opacity: 0;
+    -moz-opacity: 0; }
+    .custom-select-wrapper select:focus {
+      outline: none; }
+  .custom-select-wrapper:focus {
+    outline: none; }
+  .custom-select-wrapper:hover {
+    border: 1px solid #933EC5;
+    transition: all 0.6s ease-in-out; }
+  .custom-select-wrapper .custom-select-holder {
+    display: block;
+    margin: 0 0.3125rem 0 0;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    line-height: 1.875rem;
+    padding: 0.625rem;
+    color: #000;
+    background-image: url("../images/down-arrow.svg");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 1.25rem 1.25rem; }
+  .custom-select-wrapper .custom-select-option {
+    width: 100%;
+    display: none;
+    position: absolute;
+    left: 0;
+    z-index: 100;
+    padding: 0;
+    border: 1px solid #d4d4d4;
+    border-top: none;
+    color: #000; }
+    .custom-select-wrapper .custom-select-option .custom-select-list {
+      background: #fff;
+      padding: 0.625rem; }
+      .custom-select-wrapper .custom-select-option .custom-select-list:hover, .custom-select-wrapper .custom-select-option .custom-select-list.focused {
+        background: #933EC5;
+        color: #fff; }
+  @media (min-width: 768px) {
+    .custom-select-wrapper {
+      float: left;
+      display: inline-block;
+      width: 300px; } }
+
+
+
+/*# sourceMappingURL=custom-select.css.map */
