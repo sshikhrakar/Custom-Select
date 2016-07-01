@@ -93,6 +93,6 @@
 		width: $md-width;
 	}
 	&.focus-select{
-		outline:1px solid #5264AE;
+		outline: $focus-outline-width solid $focusIn-color;
 	}
 }

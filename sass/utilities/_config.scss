@@ -26,6 +26,8 @@ $select-text-color: $black !default;
 $option-bg: $white !default;
 $option-text-color: $black !default;
 $hover-text-color: $white !default;
+$focusIn-color: $primary-color !default;
+$focus-outline-width: rem(1px) !default;
 
 //Breakpoints
 $sm-device: 768px !default;

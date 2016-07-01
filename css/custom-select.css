@@ -6,6 +6,13 @@
 ul {
   list-style: none; }
 
+.demo-wrapper {
+  padding: 1.875rem; }
+  .demo-wrapper:after {
+    clear: both;
+    content: "";
+    display: block; }
+
 .custom-select-wrapper .custom-select-holder.image-on-option, .custom-select-wrapper .custom-select-option .custom-select-list.image-on-option {
   background-size: 1.25rem 1.25rem;
   background-position: 0.625rem center;
@@ -80,7 +87,7 @@ ul {
       display: inline-block;
       width: 300px; } }
   .custom-select-wrapper.focus-select {
-    outline: 1px solid #5264AE; }
+    outline: 0.0625rem solid #933EC5; }
 
 
 
