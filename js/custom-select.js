@@ -1,6 +1,5 @@
 ;(function($){
 	'use strict';
-
 	var CustomSelect = {
 		/**
 		    * filter the options in select
@@ -72,7 +71,7 @@
 					customOption = _this.children('.custom-select-option'),
 					hasDisabledAttribute = _this.children('select').attr('disabled');
 				if(typeof hasDisabledAttribute === typeof undefined) {
-					$(allOption).not(_this.children('.custom-select-option')).slideUp(options.animation)
+					$(allOption).not(_this.children('.custom-select-option')).slideUp(options.animation);
 					_this.attr("tabindex", '1');
 					_this.focus();
 					customOption.slideToggle(options.animation);
@@ -182,16 +181,10 @@
 				option = wrapper.find('ul');
 			this.calcTop = function(){
 				option.css({'top': (wrapperHeight - 1) + 'px'});
-			}
+			};
 			this.init = function(){
 				this.calcTop();
-			}
-			// if(_this.hasClass('error')){
-			// 	borderColor = "#A94442";
-			// 	_this.parent('.custom-select-wrapper').css({'border-bottom':'2px solid' + ' ' + borderColor});
-			// }else{
-			// 	_this.parent('.custom-select-wrapper').css({'border-bottom':'1px solid' + ' ' + borderColor});
-			// }
+			};
 		},
 		/**
 		    * Wrap the original select box with a span

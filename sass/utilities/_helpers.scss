@@ -21,9 +21,9 @@
 }
 
 %image-option{
-	background-size : 20px 20px;
-	background-position :10px center;
+	background-size : $image-size-X $image-size-Y;
+	background-position :$image-position-X $image-position-Y;
 	background-repeat: no-repeat;
-	padding-left : 40px;
+	padding-left : $image-size-X * 2;
 	transition: none;
 }

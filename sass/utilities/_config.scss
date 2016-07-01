@@ -41,3 +41,9 @@ $option-padding: $default-padding !default;
 $text-line-height: rem(30px) !default;
 $arrow-size: rem(20px) !default;
 $hover-transition: all 0.6s ease-in-out;
+
+//Image on dropdown options
+$image-size-X: rem(20px) !default;
+$image-size-Y: rem(20px) !default;
+$image-position-X: rem(10px) !default;
+$image-position-Y: center !default;
