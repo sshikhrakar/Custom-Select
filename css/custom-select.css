@@ -13,6 +13,13 @@ ul {
     content: "";
     display: block; }
 
+.custom-select-wrapper .custom-select-holder.image-on-option, .custom-select-wrapper .custom-select-option .custom-select-list.image-on-option {
+  background-size: 1.25rem 1.25rem;
+  background-position: 0.625rem center;
+  background-repeat: no-repeat;
+  padding-left: 2.5rem;
+  transition: none; }
+
 .custom-select-wrapper {
   font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   cursor: pointer;
@@ -21,7 +28,11 @@ ul {
   display: block;
   border: 1px solid #d4d4d4;
   position: relative;
-  background: #fff; }
+  background-color: #fff;
+  background-image: url("../images/down-arrow.svg");
+  background-repeat: no-repeat;
+  background-position: 98% center;
+  background-size: 1.25rem 1.25rem; }
   .custom-select-wrapper select {
     width: 1px;
     height: 1px;
@@ -45,17 +56,15 @@ ul {
   .custom-select-wrapper .custom-select-holder {
     display: block;
     margin: 0 0.3125rem 0 0;
+    text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     cursor: pointer;
     position: relative;
     line-height: 1.875rem;
     padding: 0.625rem;
-    color: #000;
-    background-image: url("../images/down-arrow.svg");
-    background-repeat: no-repeat;
-    background-position: right center;
-    background-size: 1.25rem 1.25rem; }
+    padding-right: 1.375rem;
+    color: #000; }
   .custom-select-wrapper .custom-select-option {
     width: 100%;
     display: none;
@@ -67,16 +76,18 @@ ul {
     border-top: none;
     color: #000; }
     .custom-select-wrapper .custom-select-option .custom-select-list {
-      background: #fff;
+      background-color: #fff;
       padding: 0.625rem; }
       .custom-select-wrapper .custom-select-option .custom-select-list:hover, .custom-select-wrapper .custom-select-option .custom-select-list.focused {
-        background: #933EC5;
+        background-color: #933EC5;
         color: #fff; }
   @media (min-width: 768px) {
     .custom-select-wrapper {
       float: left;
       display: inline-block;
       width: 300px; } }
+  .custom-select-wrapper.focus-select {
+    outline: 0.0625rem solid #933EC5; }
 
 
 

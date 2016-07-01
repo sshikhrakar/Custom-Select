@@ -1,6 +1,5 @@
 ;(function($){
 	'use strict';
-
 	var CustomSelect = {
 		/**
 		    * filter the options in select
@@ -63,7 +62,7 @@
 		    * @param class name of the select input type [string]
 		    * @author Shirish Shikhrakar
 		**/
-		viewOptions : function(className,options){
+		toggleOptions : function(className,options){
 			var wrapper = $(className).parent('.custom-select-wrapper');
 			wrapper.click(function(e){
 				e.stopPropagation();
@@ -72,7 +71,7 @@
 					customOption = _this.children('.custom-select-option'),
 					hasDisabledAttribute = _this.children('select').attr('disabled');
 				if(typeof hasDisabledAttribute === typeof undefined) {
-					$(allOption).not(_this.children('.custom-select-option')).slideUp(options.animation)
+					$(allOption).not(_this.children('.custom-select-option')).slideUp(options.animation);
 					_this.attr("tabindex", '1');
 					_this.focus();
 					customOption.slideToggle(options.animation);
@@ -90,6 +89,7 @@
 		    * @author Shirish Shikhrakar
 		 **/
 		updateHtmlOption : function(list){
+
 			var htmlOption = $(list).parent().siblings('select').children('option');
 			$(htmlOption).each(function(){
 				if($(this).text() === $(list).text()){
@@ -113,7 +113,7 @@
 					var listStyle = $target.attr('style');
 					$holder.text($target.text());
 					if(options.showImageOnHolder){
-						wrapper.attr('style',listStyle);
+						$holder.attr('style',listStyle);
 					}
 					CustomSelect.updateHtmlOption($target);
 				};
@@ -133,14 +133,8 @@
 		},
 
 		imageStyle : function($target,imgUrl){
-			$target.css({
-				'background-image':'url(' + imgUrl + ')',
-				'background-size' : '20px 20px',
-				'background-position' :'10px center',
-				'background-repeat': 'no-repeat',
-				'padding-left' : '40px',
-				'transition': 'none'
-			});
+			$target.css({'background-image':'url(' + imgUrl + ')'});
+			$target.addClass('image-on-option');
 		},
 		/**
 		    * Create a list as options for custom select
@@ -168,10 +162,11 @@
 		 **/
 		initialSelected : function(className,options){
 			var selectedOption = $(className).find(':selected'),
-				imageUrl = $(selectedOption).attr('data-url');
-			$(className).next('.custom-select-holder').text(selectedOption.text());
+				imageUrl = $(selectedOption).attr('data-url'),
+				holder = $(className).next('.custom-select-holder');
+			holder.text(selectedOption.text());
 			if(imageUrl && options.showImageOnHolder){
-				CustomSelect.imageStyle($(className).parent(),imageUrl);
+				CustomSelect.imageStyle(holder,imageUrl);
 			}
 		},
 		
@@ -186,16 +181,10 @@
 				option = wrapper.find('ul');
 			this.calcTop = function(){
 				option.css({'top': (wrapperHeight - 1) + 'px'});
-			}
+			};
 			this.init = function(){
 				this.calcTop();
-			}
-			// if(_this.hasClass('error')){
-			// 	borderColor = "#A94442";
-			// 	_this.parent('.custom-select-wrapper').css({'border-bottom':'2px solid' + ' ' + borderColor});
-			// }else{
-			// 	_this.parent('.custom-select-wrapper').css({'border-bottom':'1px solid' + ' ' + borderColor});
-			// }
+			};
 		},
 		/**
 		    * Wrap the original select box with a span
@@ -216,21 +205,25 @@
 		tabFocus : function(className){
 			var keyUp = function($element,focusStyle){
 				var _this = $element,
+					wrap =_this.parent(),
 					tab = 9;
 			    $(window).keyup(function (e) {									
 			        var code = (e.keyCode ? e.keyCode : e.which);
 			        if (code === tab) {
-			        	_this.parent().css(focusStyle);
+			        	if(focusStyle === 'focus'){
+			        		wrap.addClass('focus-select');
+			        	}
+			        	else if (focusStyle === 'none'){
+			        		wrap.removeClass('focus-select');
+			        	}
 			        }
 			    });
 			};
 			className.on('focusout',function(e){
-				var focusOutStyle = {'outline':'none',height:''};
-				keyUp($(this),focusOutStyle);
+				keyUp($(this),'none');
 			});
 			className.on('focus', function(e){
-				var focusInStyle = {'outline':'1px solid #5264AE'};
-				keyUp($(this),focusInStyle);
+				keyUp($(this),'focus');
 			});
 		},
 		windowResize : function(className, options){
@@ -247,7 +240,7 @@
 		 **/
 		init : function(className,options){
 			CustomSelect.wrapElement(className,options);
-			CustomSelect.viewOptions(className,options);
+			CustomSelect.toggleOptions(className,options);
 			var canvas = new CustomSelect.makeCanvas(className,options);
 			canvas.init();
 			CustomSelect.windowResize(className,options);
@@ -259,8 +252,7 @@
 		var defaultOption = {
 				theme : "default",
 				showImageOnHolder : true,
-				animation: 'fast',
-				borderColor : "#5264AE"
+				animation: 'fast'
 			},
 			pluginOptions = $.extend(defaultOption,options);
 		CustomSelect.init(this,pluginOptions);

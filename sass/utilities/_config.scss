@@ -26,6 +26,8 @@ $select-text-color: $black !default;
 $option-bg: $white !default;
 $option-text-color: $black !default;
 $hover-text-color: $white !default;
+$focusIn-color: $primary-color !default;
+$focus-outline-width: rem(1px) !default;
 
 //Breakpoints
 $sm-device: 768px !default;
@@ -39,4 +41,11 @@ $border-width: 1px !default;
 $select-padding: $default-padding !default;
 $option-padding: $default-padding !default;
 $text-line-height: rem(30px) !default;
+$arrow-size: rem(20px) !default;
 $hover-transition: all 0.6s ease-in-out;
+
+//Image on dropdown options
+$image-size-X: rem(20px) !default;
+$image-size-Y: rem(20px) !default;
+$image-position-X: rem(10px) !default;
+$image-position-Y: center !default;

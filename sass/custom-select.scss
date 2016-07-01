@@ -8,6 +8,13 @@
 		display:block;
 	}
 }
+%image-option{
+	background-size : $image-size-X $image-size-Y;
+	background-position :$image-position-X $image-position-Y;
+	background-repeat: no-repeat;
+	padding-left : $image-size-X * 2;
+	transition: none;
+}
 .custom-select-wrapper{
 	font-family: $font-family-sans;
 	cursor: pointer;
@@ -16,7 +23,8 @@
 	display: block;
 	border: $border-width solid $border-color;
 	position: relative;
-	background: $select-bg;
+	background-color: $select-bg;
+	@include bg('down-arrow.svg', $position: 98% center, $size: $arrow-size $arrow-size); 
 	select{
 		width: 1px;
 		height: 1px;
@@ -44,14 +52,18 @@
 	.custom-select-holder{
 	    display: block;
 	    margin: 0 rem(5px) 0 0;
+	    text-overflow: ellipsis;
 	    white-space: nowrap;            
 	    overflow: hidden;
 	    cursor: pointer;
 	    position: relative;
 	    line-height: $text-line-height;
 	    padding: $select-padding;
+	    padding-right: $arrow-size + rem(2px);
 	    color: $select-text-color;
-	    @include bg('down-arrow.svg', $position: right center, $size: rem(20px) rem(20px)); 
+	    &.image-on-option{
+	    	@extend %image-option;
+		}
 	}
 	.custom-select-option{
 		width: 100%;
@@ -64,10 +76,13 @@
 		border-top: none;
 		color: $option-text-color;
 		.custom-select-list{
-			background: $option-bg;
+			background-color: $option-bg;
 			padding: $option-padding;
+			&.image-on-option{
+	    		@extend %image-option;
+			}
 			&:hover,&.focused{
-				background: $primary-color;
+				background-color: $primary-color;
 				color: $hover-text-color;
 			}
 		}
@@ -76,5 +91,8 @@
 		float: left;
 		display: inline-block;
 		width: $md-width;
+	}
+	&.focus-select{
+		outline: $focus-outline-width solid $focusIn-color;
 	}
 }
