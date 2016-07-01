@@ -20,10 +20,3 @@
 	position: absolute;
 }
 
-%image-option{
-	background-size : $image-size-X $image-size-Y;
-	background-position :$image-position-X $image-position-Y;
-	background-repeat: no-repeat;
-	padding-left : $image-size-X * 2;
-	transition: none;
-}

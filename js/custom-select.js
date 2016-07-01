@@ -89,6 +89,7 @@
 		    * @author Shirish Shikhrakar
 		 **/
 		updateHtmlOption : function(list){
+
 			var htmlOption = $(list).parent().siblings('select').children('option');
 			$(htmlOption).each(function(){
 				if($(this).text() === $(list).text()){
@@ -175,7 +176,6 @@
 		    * @author Shirish Shikhrakar
 		 **/
 		makeCanvas : function(_this,options){
-			//here make global variable
 			var wrapper = $('.custom-select-wrapper'),
 				wrapperHeight = wrapper.outerHeight(),
 				option = wrapper.find('ul');
@@ -205,22 +205,25 @@
 		tabFocus : function(className){
 			var keyUp = function($element,focusStyle){
 				var _this = $element,
+					wrap =_this.parent(),
 					tab = 9;
 			    $(window).keyup(function (e) {									
 			        var code = (e.keyCode ? e.keyCode : e.which);
 			        if (code === tab) {
-			        	_this.parent().css(focusStyle);
+			        	if(focusStyle === 'focus'){
+			        		wrap.addClass('focus-select');
+			        	}
+			        	else if (focusStyle === 'none'){
+			        		wrap.removeClass('focus-select');
+			        	}
 			        }
 			    });
 			};
 			className.on('focusout',function(e){
-				//here make a css class
-				var focusOutStyle = {'outline':'none',height:''};
-				keyUp($(this),focusOutStyle);
+				keyUp($(this),'none');
 			});
 			className.on('focus', function(e){
-				var focusInStyle = {'outline':'1px solid #5264AE'};
-				keyUp($(this),focusInStyle);
+				keyUp($(this),'focus');
 			});
 		},
 		windowResize : function(className, options){
@@ -249,8 +252,7 @@
 		var defaultOption = {
 				theme : "default",
 				showImageOnHolder : true,
-				animation: 'fast',
-				borderColor : "#5264AE"
+				animation: 'fast'
 			},
 			pluginOptions = $.extend(defaultOption,options);
 		CustomSelect.init(this,pluginOptions);

@@ -8,6 +8,13 @@
 		display:block;
 	}
 }
+%image-option{
+	background-size : $image-size-X $image-size-Y;
+	background-position :$image-position-X $image-position-Y;
+	background-repeat: no-repeat;
+	padding-left : $image-size-X * 2;
+	transition: none;
+}
 .custom-select-wrapper{
 	font-family: $font-family-sans;
 	cursor: pointer;
@@ -84,5 +91,8 @@
 		float: left;
 		display: inline-block;
 		width: $md-width;
+	}
+	&.focus-select{
+		outline:1px solid #5264AE;
 	}
 }
