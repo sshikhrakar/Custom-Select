@@ -6,6 +6,7 @@ Custom-Select is a JQuery plugin which allows developers to customize the HTML S
 Fully customizable with SASS.
 </p>
 
+<div>View demo <a href="http://sshikhrakar.github.io/Custom-Select/">here.</a>
 <h3>Features provided by the plugin:</h3>
 <ul>
   <li>Fully customizable SASS. Config located at 'sass/utilities/config.scss'.</li>
